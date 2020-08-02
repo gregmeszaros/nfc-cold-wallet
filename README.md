@@ -17,7 +17,7 @@ The aim of this project is to build a solution for storing wallet seed securely 
 ![nfc_ref_arch](nfc_arch.jpg)
 
 ## NFC DATA EXCHANGE FORMAT (NDEF)
-Data exchanged between NFC devices and tags is formatted using the NFC Data Exchange Format (NDEF).NDEF is one of the key advancements that NFC adds to RFID. It’s a common data format that operates across all NFC devices, regardless of the underlying tag or device technology. Every NDEF message contains one or more NDEF records. Each record has a particular record type, a unique ID, a length, and a payload of data.
+Data exchanged between NFC devices and tags is formatted using the NFC Data Exchange Format (NDEF). NDEF is one of the key advancements that NFC adds to RFID. It's a common data format that operates across all NFC devices, regardless of the underlying tag or device technology. Every NDEF message contains one or more NDEF records. Each record has a particular record type, a unique ID, a length, and a payload of data.
 
 ## Some considerations before using NFC tags and choosing the right NFC
 - Memory size required?
@@ -25,4 +25,12 @@ Data exchanged between NFC devices and tags is formatted using the NFC Data Exch
 - Data retention - Standard chips can have a lifespan of 10-15 years, but special chips can have a lifespan of up to 200 years.
 - Password lock - By default NFC chips are rewritable, but can be set also to read-only mode (after data is written), also password-lock mode can be used if the data needs to be changed again in the future.
 - Durability - NFC chips are waterproof, durable to heat, and shock resistant.
+
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
+
+## Supported Platforms
+- Android 
+- iOS
+
+## Example prototype (work in progress)
+https://drive.google.com/file/d/1GdrwaBXNKQ5MHSyoOw8mZwTZG_or2azI/view
