@@ -15,7 +15,7 @@ Very similar to RFID, but a disadvantage of RFID is that it can be read from a d
 - Memory size required?
 - Encryption - Choose a chip which allows encryption
 - Data retention - Standard chips can have a lifespan of 10-15 years, but special chips can have a lifespan of up to 200 years.
-- Password lock - By default the NFC chips are rewritable, but can be set to read-only mode (after data is written), also password-lock mode can be used if the data needs to be changed again in the future).
+- Password lock - By default NFC chips are rewritable, but can be set also to read-only mode (after data is written), also password-lock mode can be used if the data needs to be changed again in the future.
 - Durability - NFC chips are be durable to heat, waterproof and shock resistant
 
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
