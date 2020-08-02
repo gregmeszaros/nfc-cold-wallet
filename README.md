@@ -51,7 +51,7 @@ Payout: **1000 KSM**
 Duration: **4-6 weeks**
 
 ## How to securely encrypt BIP-39 seed words?
-- The idea is the mobile would allow to create some random questions, such as date of births, important dates etc
+- The idea is the mobile app would allow to create some random questions, such as date of births, important dates etc
 - The app won't store the answers, they will only be asked when the user tries to write the seed to the NFC tag
 - Using this information and/or a custom passphrase the data will be encrypted and written to the NFC tag 
 
