@@ -40,6 +40,11 @@ Payout: **1000 KSM**
 
 Duration: **6-8 weeks** (after that should ready to submit to App Store and Google play store)
 
+## Technology stack
+- TypeScript
+- VueJS
+- CapacitorJS
+
 ## Supported Platforms
 - Android 
 - iOS
