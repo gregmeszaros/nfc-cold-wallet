@@ -34,11 +34,21 @@ The proposed mobile app solution should be able to
 - write seed data to NFC tag (if the tag is not read-only/locked)
 - make the NFC tag read-only (the seed data can't be removed/updated after this operation)
 - select passphrase to use to encrypt the seed data for the write operation
+- download wallet mnemonic seed 
 - *hot copy of the seed data on the mobile device (when the nfc tag is scanned hot and cold backup copy can be compared) - sync status
 
 Payout: **1000 KSM**
 
 Duration: **6-8 weeks** (after that should ready to submit to App Store and Google play store)
+
+## Extra functionality (Milestone 2)
+- ability to generate new wallet in the app (with only the core functionality the seed need to be typed manually)
+- more options to import already existing wallet mnemonic seed (QR code reader)
+- fingeprint/touch ID authentication for the app
+
+Payout: **1000 KSM**
+
+Duration: **4-6 weeks**
 
 ## Technology stack
 - TypeScript
