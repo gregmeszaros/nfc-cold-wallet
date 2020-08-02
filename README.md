@@ -36,8 +36,9 @@ The proposed mobile app solution should be able to
 - select passphrase to use to encrypt the seed data for the write operation
 - *hot copy of the seed data on the mobile device (when the nfc tag is scanned hot and cold backup copy can be compared) - sync status
 
-Payout: 1000 KSM
-Duration: 6-8 weeks (after that should ready to submit to App Store and Google play store)
+Payout: **1000 KSM**
+
+Duration: **6-8 weeks** (after that should ready to submit to App Store and Google play store)
 
 ## Supported Platforms
 - Android 
@@ -48,5 +49,6 @@ https://drive.google.com/file/d/1GdrwaBXNKQ5MHSyoOw8mZwTZG_or2azI/view
 
 ## Notes
 Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
+
 Anyone could contribute or fork the code after initial launch.
 New functionality, features and the future roadmap could be decided by a democratic governance approach.
