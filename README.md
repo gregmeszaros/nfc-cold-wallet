@@ -42,7 +42,7 @@ Payout: **1000 KSM**
 Duration: **6-8 weeks** (after that should ready to submit to App Store and Google play store)
 
 ## Extra functionality (Milestone 2)
-- ability to generate new wallet in the app (with only the core functionality the seed need to be typed manually)
+- ability to generate new wallet in the app (with only the core functionality the seed needs to be typed manually)
 - more options to import already existing wallet mnemonic seed (QR code reader)
 - fingeprint/touch ID authentication for the app
 
