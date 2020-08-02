@@ -1,7 +1,7 @@
 # NFC cold wallet for Kusama
 
 ## Project Description
-The aim of this project is to build a solution for storing wallet seed securely offline by using NFC tags and industry standard cryptography and encryption.
+The aim of this project is to build a solution for storing wallet mnemonic seed securely offline by using NFC tags and industry standard cryptography and encryption.
 
 ## Why NFC?
 ![nfc_ref_arch](nfc.jpg)
