@@ -28,9 +28,25 @@ Data exchanged between NFC devices and tags is formatted using the NFC Data Exch
 
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
 
+## Core functionality (Milestone 1)
+The proposed mobile app solution should be able to
+- read seed data from NFC tag
+- write seed data to NFC tag (if the tag is not read-only/locked)
+- make the NFC tag read-only (the seed data can't be removed/updated after this operation)
+- select passphrase to use to encrypt the seed data for the write operation
+- *hot copy of the seed data on the mobile device (when the nfc tag is scanned hot and cold backup copy can be compared) - sync status
+
+Payout: 1000 KSM
+Duration: 6-8 weeks (after that should ready to submit to App Store and Google play store)
+
 ## Supported Platforms
 - Android 
 - iOS
 
 ## Example prototype (work in progress)
 https://drive.google.com/file/d/1GdrwaBXNKQ5MHSyoOw8mZwTZG_or2azI/view
+
+## Notes
+Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
+Anyone could contribute or fork the code after initial launch.
+New functionality, features and the future roadmap could be decided by a democratic governance approach.
