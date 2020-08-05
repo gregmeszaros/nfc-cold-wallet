@@ -28,6 +28,18 @@ Data exchanged between NFC devices and tags is formatted using the NFC Data Exch
 
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
 
+## NFC chips to use
+NXP NTAG216: 
+- 924 bytes, organized in 231 pages of 4 byte per page.
+- 26 bytes reserved for manufacturer and configuration data
+- 37 bits used for the read-only locking mechanism
+- 4 bytes available as capability container
+- **888 bytes** user programmable read/write memory
+
+Detailed specs:
+https://www.nxp.com/docs/en/data-sheet/NTAG213_215_216.pdf
+
+
 ## Core functionality (Milestone 1)
 The proposed mobile app solution should be able to
 - read seed data from NFC tag
