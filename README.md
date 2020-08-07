@@ -65,7 +65,7 @@ Duration: **4-6 weeks**
 ## Future milestones/roadmap
 - Integration with other wallets and websites (one click backups from other apps)
 - Ability to have partial seed backed up on NFC tag (use 2 or more NFC tags to recover the full seed)
-- Another use cases for NFC tags (storing public keys, wallet addresses or any data to on a separate NFC tag, support for **vCard format** - example use case NFC business cards for example)
+- Another use cases for NFC tags (storing public keys, wallet addresses or any custom data on the NFC tag (seperate from the seed backup) with a support for **vCard format** - example use case NFC business cards)
 
 ## How to securely encrypt BIP-39 seed words?
 - The idea is the mobile app would allow to create some random questions, such as date of births, important dates etc
@@ -73,6 +73,7 @@ Duration: **4-6 weeks**
 - Using this information and/or a custom passphrase the data will be encrypted and written to the NFC tag 
 
 Any data written to the NFC tag is encrypted and only the user hold the keys/passphrase to decrypt it.
+
 Suggested and tested encryption algorithm for this project is **AES 256-bit**
 
 **Example of AES encryption and decryption:**
