@@ -72,7 +72,7 @@ Duration: **4-6 weeks**
 - The app won't store the answers, they will only be asked when the user tries to write the seed to the NFC tag
 - Using this information and/or a custom passphrase the data will be encrypted and written to the NFC tag 
 
-Any data written to the NFC tag is encrypted and only the user hold the keys/passphrase to decrypt it.
+Any data written to the NFC tag is encrypted and only the user holds the keys/passphrase to decrypt it.
 
 Suggested and tested encryption algorithm for this project is **AES 256-bit**
 
