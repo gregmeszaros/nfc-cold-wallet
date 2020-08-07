@@ -62,6 +62,10 @@ Payout: **1000 KSM**
 
 Duration: **4-6 weeks**
 
+## Future milestone/roadmap
+- Ability to have partial seed backed up on NFC tag (use 2 or more NFC tags to recover the full seed)
+- Another use cases for NFC tags (storing public keys, wallet addresses or any data to share on a separate NFC tag, support for vCard format such NFC business cards for example)
+
 ## How to securely encrypt BIP-39 seed words?
 - The idea is the mobile app would allow to create some random questions, such as date of births, important dates etc
 - The app won't store the answers, they will only be asked when the user tries to write the seed to the NFC tag
