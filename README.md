@@ -21,14 +21,14 @@ Data exchanged between NFC devices and tags is formatted using the NFC Data Exch
 
 ## Some considerations before using NFC tags and choosing the right NFC
 - Memory size required?
-- Encryption - Choose a chip which allows encryption
-- Data retention - Standard chips can have a lifespan of 10-15 years, but special chips can have a lifespan of up to 200 years.
-- Password lock - By default NFC chips are rewritable, but can be set also to read-only mode (after data is written), also password-lock mode can be used if the data needs to be changed again in the future.
-- Durability - NFC chips are waterproof, durable to heat, and shock resistant.
+- Encryption - Choose a tag which allows encryption
+- Data retention - Standard tags can have a lifespan of 10-15 years, but special tags can have a lifespan of up to 200 years.
+- Password lock - By default NFC tag are rewritable, but can be set also to read-only mode (after data is written), also password-lock mode can be used if the data needs to be changed again in the future.
+- Durability - NFC tag are waterproof, durable to heat, and shock resistant.
 
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
 
-## NFC chips to use
+## NFC tags to use
 NXP NTAG216: 
 - 924 bytes, organized in 231 pages of 4 byte per page.
 - 26 bytes reserved for manufacturer and configuration data
@@ -70,6 +70,21 @@ Duration: **4-6 weeks**
 - The idea is the mobile app would allow to create some random questions, such as date of births, important dates etc
 - The app won't store the answers, they will only be asked when the user tries to write the seed to the NFC tag
 - Using this information and/or a custom passphrase the data will be encrypted and written to the NFC tag 
+
+Any data written to the NFC tag is encrypted and only the user hold the keys/passphrase to decrypt it.
+Suggested and tested encryption algorithm for this project is **AES 256-bit**
+
+**Example of AES encryption and decryption:**
+
+```
+printf "hello kusama" | \
+  openssl enc -e -base64 -A -aes-256-cbc -pass pass:"my very strong password"
+```
+
+```
+printf "U2FsdGVkX19Z+hrYCwtcRFZYF2j4wZfYYGgk5aUwJKk=" | \
+  openssl enc -d -base64 -A -aes-256-cbc -pass pass:"my very strong password"
+```
 
 ## Technology stack
 - TypeScript
