@@ -65,7 +65,7 @@ Duration: **4-6 weeks**
 ## Future milestones/roadmap
 - integration with other wallets and websites (one click backups from other apps)
 - ability to have partial seed backed up on NFC tag (use 2 or more NFC tags to recover the full seed) --> **Shamir's Secret Sharing**, example: https://iancoleman.io/shamir39/
-- another use cases for NFC tags (storing public keys, wallet addresses or any custom data on the NFC tag (seperate from the seed backup) with a support for **vCard format** - example use case **NFC business cards**)
+- another use cases for NFC tags (storing public keys, wallet addresses or any custom data on the NFC tag (separate from the seed backup) with a support for **vCard format** - example use case **NFC business cards**)
 - **NFC branded gift cards** for giveaways or marketing activities
 
 ## How to securely encrypt BIP-39 seed words?
