@@ -29,6 +29,12 @@ Data exchanged between NFC devices and tags is formatted using the NFC Data Exch
 More details here: https://www.shopnfc.com/en/content/11-nfc-guide
 
 ## NFC tags to use
+- As part of our milestones we will test different NFC tags to have as wide support for different vendors as we can.
+
+Generally speaking any NDEF formatted tag with at least 300 bytes of write memory should be sufficient. We will also maintain a document with a list of **tested/approved NFC tags** to use.
+
+Currently we tested **NTAG** and **Mifare** series.
+
 NXP NTAG216: 
 - 924 bytes, organized in 231 pages of 4 byte per page.
 - 26 bytes reserved for manufacturer and configuration data
