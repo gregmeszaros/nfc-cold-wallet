@@ -56,7 +56,7 @@ Duration: **6-8 weeks** (after that should ready to submit to App Store and Goog
 ## Extra functionality (Milestone 2)
 - ability to generate new wallet in the app (with only the core functionality the seed needs to be typed manually)
 - more options to import already existing wallet mnemonic seed (QR code reader)
-- fingeprint/touch ID authentication for the app
+- ability to have partial seed backed up on NFC tags (use 2 or more NFC tags to recover the full seed) --> **Shamir's Secret Sharing**, example: https://iancoleman.io/shamir39/
 
 Payout: **1000 KSM**
 
@@ -64,7 +64,7 @@ Duration: **4-6 weeks**
 
 ## Future milestones/roadmap
 - integration with other wallets and websites (one click backups from other apps)
-- ability to have partial seed backed up on NFC tag (use 2 or more NFC tags to recover the full seed) --> **Shamir's Secret Sharing**, example: https://iancoleman.io/shamir39/
+- fingeprint/touch ID authentication for the app
 - another use cases for NFC tags (storing public keys, wallet addresses or any custom data on the NFC tag (separate from the seed backup) with a support for **vCard format** - example use case **NFC business cards**)
 - **NFC branded gift cards** for giveaways or marketing activities
 
