@@ -1,0 +1,27 @@
+{
+    "nativescript": {
+        "id": "tech.cryptovault.wallet",
+        "tns-android": {
+            "version": "6.5.0"
+        },
+        "tns-ios": {
+            "version": "6.5.0"
+        }
+    },
+    "main": "app.js",
+    "description": "CryptoVault.tech - Paper wallet meets NFC",
+    "license": "https://github.com/gregmeszaros/nfc-cold-wallet/blob/master/LICENSE",
+    "repository": "https://github.com/gregmeszaros/nfc-cold-wallet",
+    "dependencies": {
+        "@nativescript/core": "~6.5.0",
+        "@nativescript/theme": "~2.3.0",
+        "nativescript-nfc": "^4.1.0"
+    },
+    "devDependencies": {
+        "nativescript-dev-webpack": "~1.5.0",
+        "tns-platform-declarations": "~6.5.0",
+        "typescript": "~3.8.3"
+    },
+    "gitHead": "20a65d338ae8f8911087ab6615b89363f864b07b",
+    "readme": "https://github.com/gregmeszaros/nfc-cold-wallet/blob/master/README.md"
+}

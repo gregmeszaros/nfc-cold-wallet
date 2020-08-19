@@ -1,0 +1,43 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+  <ScrollView>
+    <StackLayout>
+
+      <Image margin="0" src="~/res/nfc.png" width="60%" horizontalAlignment="center" />
+
+      <StackLayout class="nt-form">
+        <StackLayout class="nt-input">
+          <Label text="Your mnemonic seed" class="font-weight-bold m-b-5" />
+          <TextView hint="Enter seed words..." autocapitalizationType="none" autocorrect="false" textChange="{{ onSeedChange }}"></TextView>
+
+          <Button text="Encrypt seed" tap="{{ encryptSeed }}" class="button" width="80%" />
+        </StackLayout>
+      </StackLayout>
+
+      <StackLayout orientation="horizontal" width="100%">
+        <Button text="NFC available?" tap="{{ doCheckAvailable }}" class="-primary -rounded-lg" width="40%" />
+        <Button text="NFC enabled?" tap="{{ doCheckEnabled }}" class="button button-a" width="40%" />
+      </StackLayout>
+
+      <StackLayout orientation="horizontal" width="100%">
+        <Button text="set ndef listener" tap="{{ doStartNdefListener }}" class="button" width="40%"/>
+        <Button text="clear ndef listener" tap="{{ doStopNdefListener }}" class="button" width="40%"/>
+      </StackLayout>
+
+      <Android>
+        <StackLayout orientation="horizontal" width="100%">
+          <Button text="set tag listener" tap="{{ doStartTagListener }}" class="button" width="40%"/>
+          <Button text="clear tag listner" tap="{{ doStopTagListener }}" class="button" width="40%"/>
+        </StackLayout>
+
+        <StackLayout orientation="horizontal" width="100%">
+          <Button text="write Text" tap="{{ doWriteText }}" class="button button-d" width="40%" />
+          <Button text="write Uri" tap="{{ doWriteUri }}" class="button button-d" width="40%" />
+        </StackLayout>
+        <Button text="erase tag" tap="{{ doEraseTag }}" class="button button-c" />
+      </Android>
+
+      <Label text="{{ lastNdefDiscovered }}" class="message message-ndef" textWrap="true" />
+
+    </StackLayout>
+  </ScrollView>
+</Page>
