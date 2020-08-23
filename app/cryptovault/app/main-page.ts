@@ -6,7 +6,7 @@ logic, and to set up your page’s data binding.
 
 import * as observable from "@nativescript/core/data/observable";
 import * as pages from "@nativescript/core/ui/page";
-import { CryptoVaultModel } from './main-view-model';
+import { CryptoVaultModel } from '~/model/main-view-model';
 
 // Event handler for Page 'loaded' event attached in main-page.xml
 export function pageLoaded(args: observable.EventData) {

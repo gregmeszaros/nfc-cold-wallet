@@ -1,9 +1,15 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+
+  <ActionBar title="test">
+    <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
+      <Image src="~/res/nfc.png" class="action-image"></Image>
+      <Label text="CryptoVault" class="action-label"></Label>
+    </StackLayout>
+    <ActionItem tap="{{ doCheckAvailable }}" ios.systemIcon="7" ios.position="right" android.systemIcon="ic_menu_compose" android.position="actionBar"></ActionItem>
+  </ActionBar>
+
   <ScrollView>
-    <StackLayout>
-
-      <Image margin="0" src="~/res/nfc.png" width="60%" horizontalAlignment="center" />
-
+    <StackLayout class="bg-custom">
       <StackLayout class="nt-form">
         <StackLayout class="nt-input">
           <Label text="Your mnemonic seed" class="font-weight-bold m-b-5" />
@@ -35,6 +41,22 @@
         </StackLayout>
         <Button text="erase tag" tap="{{ doEraseTag }}" class="button button-c" />
       </Android>
+
+      <Label text="{{ getSeedList() }}" class="message message-ndef" textWrap="true" />
+
+      <Repeater items="{{ seedList }}">
+        <Repeater.itemsLayout>
+          <StackLayout orientation="vertical" />
+        </Repeater.itemsLayout>
+        <Repeater.itemTemplate>
+          <StackLayout orientation="horizontal">
+            <Label fontSize="16" text="{{ $value.name }}" margin="5" width="20%" />
+            <Label fontSize="16" text="{{ $value.encryptedSeed }}" width="30%" />
+            <Button id="{{ $value.encryptedSeed }}" text="dec" tap="{{ $value.decrypt }}" class="button button-c" width="15%" />
+            <Button id="{{ $value.encryptedSeed }}" text="del" tap="{{ $value.remove }}" class="button button-c"  width="15%" />
+          </StackLayout>
+        </Repeater.itemTemplate>
+      </Repeater>
 
       <Label text="{{ lastNdefDiscovered }}" class="message message-ndef" textWrap="true" />
 

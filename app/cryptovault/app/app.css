@@ -18,11 +18,26 @@ The imported CSS rules must precede all other types of rules.
 /* Place any CSS rules you want to apply on both iOS and Android here.
 This is where the vast majority of your CSS code goes. */
 
+.action-image {
+    /*width: 40px;*/
+    height: 60px;
+    vertical-align: center;
+}
 
-/*
-The following CSS rule changes the font size of all Buttons that have the
-'-primary' class modifier.
-*/
+.action-label {
+    color: #ffffff;
+    font-size: 20;
+    min-height: 60px;
+    font-weight: bold;
+    vertical-align: center;
+}
+
+.bg-custom {
+    background-image: url("~/res/bg-gradient.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 Button.-primary {
     font-size: 18;

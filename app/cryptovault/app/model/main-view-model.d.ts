@@ -1,7 +1,10 @@
 import { Observable } from '@nativescript/core';
+import { ObservableArray } from "@nativescript/core/data/observable-array";
+
 export declare class CryptoVaultModel extends Observable {
     message: string;
-    //seed: string;
+    seed: string;
+    seedList: ObservableArray<Object>;
     private nfc;
     constructor();
     doCheckAvailable(): void;
@@ -12,4 +15,6 @@ export declare class CryptoVaultModel extends Observable {
     doWriteGoodbye(): void;
     onSeedChange(): void;
     encryptSeed(): void;
+    getSeedList(): void;
+    removeSeedItem(): void;
 }

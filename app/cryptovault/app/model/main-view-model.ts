@@ -1,21 +1,35 @@
 import { Observable } from '@nativescript/core';
 import { EventData } from "@nativescript/core/data/observable";
+import { ObservableArray } from "@nativescript/core/data/observable-array";
 
 import { alert } from "@nativescript/core/ui/dialogs";
 import * as dialogs from "@nativescript/core/ui/dialogs";
 import { TextView } from "@nativescript/core/ui/text-view";
 
+import * as  appSettings from "@nativescript/core/application-settings";
+import * as clipboard from "nativescript-clipboard";
+
 import { Nfc, NfcTagData, NfcNdefData } from "nativescript-nfc";
+import CryptoES from 'crypto-es';
+
+import { SearchItem } from "~/common/interfaces"
 
 export class CryptoVaultModel extends Observable {
     public lastNdefDiscovered: string = "Press a button...";
     private nfc: Nfc;
     public seed: string = "";
+    public seedList: ObservableArray<Object>;
+    public static getSeedList: ObservableArray<Object>;
 
     constructor() {
         super();
         this.nfc = new Nfc();
         this.seed = "empty";
+
+        this.seedList = new ObservableArray([]);
+        CryptoVaultModel.getSeedList = this.seedList;
+        // get all data if we have any from application settings
+        // this.seedList.unshift({ name: "name", encryptedSeed: "should work", decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
     }
 
     public doCheckAvailable() {
@@ -136,17 +150,78 @@ export class CryptoVaultModel extends Observable {
         dialogs.prompt({
             title: "Encrypt seed",
             message: "Use a strong password to encrypt your seed",
-            okButtonText: "Save",
+            okButtonText: "Encrypt",
             cancelButtonText: "Cancel",
             defaultText: "",
             inputType: dialogs.inputType.password
         }).then(r => {
-            console.log("Dialog result: " + r.result + ", text: " + r.text);
             if (r.result != false) {
-                alert(this.seed);
-                alert(r.text);
+                let ciphertext = CryptoES.AES.encrypt(this.seed, r.text);
+                appSettings.setString("test", ciphertext.toString());
+                this.seedList.unshift({ name: "test", encryptedSeed: ciphertext.toString(), decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
             }
-            
         });
+    }
+
+    public getSeedList() {
+        const testdata: string = appSettings.getString("test");
+        return testdata;
+    }
+
+    public decryptSeedItem(args: EventData) {
+        const decryptItem = args.object as TextView;
+        console.log(decryptItem.id);
+
+        dialogs.prompt({
+            title: "Decrypt seed",
+            message: "Use the password you provided earlier for this seed",
+            okButtonText: "Decrypt",
+            cancelButtonText: "Cancel",
+            defaultText: "",
+            inputType: dialogs.inputType.password
+        }).then(r => {
+            if (r.result != false) {
+                let ciphertext = CryptoES.AES.decrypt(decryptItem.id, r.text);
+
+                dialogs.confirm({
+                    title: "Decrypted seed",
+                    message: ciphertext.toString(CryptoES.enc.Utf8),
+                    okButtonText: "Copy to clipboard",
+                    cancelButtonText: "Ok"
+                }).then(r => {
+                    // result argument is boolean
+                    console.log("Dialog result: " + r);
+                    if (r != false) {
+                        clipboard.setText(ciphertext.toString(CryptoES.enc.Utf8)).then(function () {
+                            alert('Saved to clipboard');
+                        })
+                    }
+                });
+            }
+
+        });
+    }
+
+    public removeSeedItem(args: EventData) {
+        console.log(args);
+        const removeItem = args.object as TextView;
+        console.log(removeItem.id);
+        console.log(removeItem);
+
+        setTimeout(() => {
+            console.log(CryptoVaultModel.getSeedList.getItem(0));
+            alert(CryptoVaultModel.searchSeedKey(removeItem.id))
+            CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
+        }, 1000);
+    }
+
+    public static searchSeedKey(encryptedSeed: string): number {
+        for (let i = 0; i < CryptoVaultModel.getSeedList.length; i++) {
+            let data: SearchItem = {};
+            data = CryptoVaultModel.getSeedList.getItem(i);
+            if (data.encryptedSeed != undefined && data.encryptedSeed == encryptedSeed) {
+                return i;
+            }
+        }
     }
 }
