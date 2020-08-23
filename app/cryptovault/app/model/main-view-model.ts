@@ -102,7 +102,7 @@ export class CryptoVaultModel extends Observable {
             textRecords: [
                 {
                     id: [1],
-                    text: this.seed
+                    text: this.getSeedList()
                 }
             ]
         }).then(() => {
