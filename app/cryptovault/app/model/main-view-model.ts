@@ -6,6 +6,9 @@ import { alert } from "@nativescript/core/ui/dialogs";
 import * as dialogs from "@nativescript/core/ui/dialogs";
 import { TextView } from "@nativescript/core/ui/text-view";
 
+import * as nsutils from '@nativescript/core/utils/utils';
+import { ios } from '@nativescript/core/application';
+
 import * as  appSettings from "@nativescript/core/application-settings";
 import * as clipboard from "nativescript-clipboard";
 
@@ -218,6 +221,14 @@ export class CryptoVaultModel extends Observable {
             if (data.encryptedSeed != undefined && data.encryptedSeed == encryptedSeed) {
                 return i;
             }
+        }
+    }
+
+    public hideKeyboard() {
+        if (ios) {
+            ios.nativeApp.sendActionToFromForEvent('resignFirstResponder', null, null, null);
+        } else {
+            nsutils.ad.dismissSoftInput();
         }
     }
 }

@@ -1,12 +1,12 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd"
   xmlns:RL="nativescript-ripple" loaded="pageLoaded">
 
-  <ActionBar title="test">
+  <ActionBar title="vaultbar">
     <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
       <Image src="~/res/nfc.png" class="action-image"></Image>
       <Label text="CryptoVault" class="action-label"></Label>
     </StackLayout>
-    <ActionItem tap="{{ doCheckAvailable }}" icon="~/res/new.png" ios.position="right" android.position="actionBar"></ActionItem>
+    <ActionItem tap="{{ hideKeyboard }}" icon="~/res/new.png" ios.position="right" android.position="actionBar"></ActionItem>
   </ActionBar>
 
   <BottomNavigation selectedIndex="1">
@@ -15,15 +15,15 @@
     <TabStrip>
       <TabStripItem>
         <Label text="Seed"></Label>
-        <Image src="font://&#xf015;" class="fas t-36"></Image>
+        <Image src="~/res/paper.png"></Image>
       </TabStripItem>
       <TabStripItem class="special">
         <Label text="NFC"></Label>
-        <Image src="font://&#xf007;" class="fas t-36"></Image>
+        <Image src="~/res/nfc-mobile.png"></Image>
       </TabStripItem>
-      <TabStripItem class="special">
+      <TabStripItem>
         <Label text="About"></Label>
-        <Image src="font://&#xf00e;" class="fas t-36"></Image>
+        <Image src="~/res/info.png"></Image>
       </TabStripItem>
     </TabStrip>
 
