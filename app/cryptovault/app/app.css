@@ -84,4 +84,8 @@ button {
 
 .seedLayout {
     background-color: #CCC;
+    padding: 10px;
+    border-bottom-width: 2px;
+    border-style: dashed solid;
+    border-color: #bababa;
 }

@@ -12,7 +12,8 @@ import * as clipboard from "nativescript-clipboard";
 import { Nfc, NfcTagData, NfcNdefData } from "nativescript-nfc";
 import CryptoES from 'crypto-es';
 
-import { SearchItem } from "~/common/interfaces"
+import { SearchItem } from "~/common/interfaces";
+import { encryptSeedLabel, encryptSeedLabelMessage } from "~/common/constants";
 
 export class CryptoVaultModel extends Observable {
     public lastNdefDiscovered: string = "Press a button...";
@@ -148,8 +149,8 @@ export class CryptoVaultModel extends Observable {
      */
     public encryptSeed() {
         dialogs.prompt({
-            title: "Encrypt seed",
-            message: "Use a strong password to encrypt your seed",
+            title: encryptSeedLabel,
+            message: encryptSeedLabelMessage,
             okButtonText: "Encrypt",
             cancelButtonText: "Cancel",
             defaultText: "",
@@ -206,13 +207,8 @@ export class CryptoVaultModel extends Observable {
         console.log(args);
         const removeItem = args.object as TextView;
         console.log(removeItem.id);
-        console.log(removeItem);
-
-        setTimeout(() => {
-            console.log(CryptoVaultModel.getSeedList.getItem(0));
-            alert(CryptoVaultModel.searchSeedKey(removeItem.id))
-            CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
-        }, 1000);
+        console.log(CryptoVaultModel.searchSeedKey(removeItem.id))
+        CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
     }
 
     public static searchSeedKey(encryptedSeed: string): number {

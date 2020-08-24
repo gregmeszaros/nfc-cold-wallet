@@ -17,7 +17,8 @@
         "@nativescript/theme": "~2.3.0",
         "crypto-es": "^1.2.6",
         "nativescript-clipboard": "^1.2.0",
-        "nativescript-nfc": "^4.1.0"
+        "nativescript-nfc": "^4.1.0",
+        "nativescript-ripple": "^2.2.1"
     },
     "devDependencies": {
         "nativescript-dev-webpack": "~1.5.0",

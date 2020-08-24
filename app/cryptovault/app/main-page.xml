@@ -1,11 +1,12 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="pageLoaded">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd"
+  xmlns:RL="nativescript-ripple" loaded="pageLoaded">
 
   <ActionBar title="test">
     <StackLayout orientation="horizontal" ios:horizontalAlignment="center" android:horizontalAlignment="left">
       <Image src="~/res/nfc.png" class="action-image"></Image>
       <Label text="CryptoVault" class="action-label"></Label>
     </StackLayout>
-    <ActionItem tap="{{ doCheckAvailable }}" ios.systemIcon="7" ios.position="right" android.systemIcon="ic_menu_compose" android.position="actionBar"></ActionItem>
+    <ActionItem tap="{{ doCheckAvailable }}" icon="~/res/new.png" ios.position="right" android.position="actionBar"></ActionItem>
   </ActionBar>
 
   <BottomNavigation selectedIndex="1">
@@ -43,21 +44,31 @@
 
           <StackLayout class="nt-input">
             <Label text="Your stored seeds" class="font-weight-bold m-b-5" />
-            <ScrollView height="200">
-              <Repeater items="{{ seedList }}">
-                <Repeater.itemsLayout>
-                  <StackLayout orientation="vertical" />
-                </Repeater.itemsLayout>
-                <Repeater.itemTemplate>
-                  <StackLayout className="seedLayout" orientation="horizontal">
-                    <Label fontSize="16" text="{{ $value.name }}" width="10%" />
-                    <Label fontSize="16" text="{{ $value.encryptedSeed }}" width="20%" />
-                    <Button id="{{ $value.encryptedSeed }}" text="dec" tap="{{ $value.decrypt }}" class="button float-right" />
-                    <Button id="{{ $value.encryptedSeed }}" text="del" tap="{{ $value.remove }}" class="button" />
-                  </StackLayout>
-                </Repeater.itemTemplate>
-              </Repeater>
-            </ScrollView>
+            <Repeater items="{{ seedList }}">
+              <Repeater.itemsLayout>
+                <StackLayout orientation="vertical" />
+              </Repeater.itemsLayout>
+              <Repeater.itemTemplate>
+                <StackLayout className="seedLayout" orientation="horizontal">
+                  <Label fontSize="16" text="{{ $value.name }}" width="10%" />
+                  <Label fontSize="16" text="{{ $value.encryptedSeed }}" width="40%" />
+                  <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
+                    <Image src="~/res/lock.png" width="50px" class="button" />
+                  </RL:Ripple>
+                  <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
+                    <Image src="~/res/download.png" width="50px" class="button" />
+                  </RL:Ripple>
+                  <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
+                    <Image src="~/res/write.png" width="50px" class="button" />
+                  </RL:Ripple>
+                  <GridLayout rows="auto" columns="*">
+                    <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.remove }}">
+                      <Image src="~/res/trash.png" horizontalAlignment="right" width="50px" class="button" />
+                    </RL:Ripple>
+                  </GridLayout>
+                </StackLayout>
+              </Repeater.itemTemplate>
+            </Repeater>
           </StackLayout>
 
           <Label text="{{ getSeedList() }}" class="message message-ndef" textWrap="true" />
