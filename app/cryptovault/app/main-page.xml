@@ -53,17 +53,17 @@
                   <Label fontSize="16" text="{{ $value.name }}" width="10%" />
                   <Label fontSize="16" text="{{ $value.encryptedSeed }}" width="40%" />
                   <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
-                    <Image src="~/res/lock.png" width="50px" class="button" />
+                    <Image src="~/res/lock.png" width="80px" class="button" />
                   </RL:Ripple>
                   <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
-                    <Image src="~/res/download.png" width="50px" class="button" />
+                    <Image src="~/res/download.png" width="80px" class="button" />
                   </RL:Ripple>
                   <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
-                    <Image src="~/res/write.png" width="50px" class="button" />
+                    <Image src="~/res/write.png" width="80px" class="button" />
                   </RL:Ripple>
                   <GridLayout rows="auto" columns="*">
                     <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.remove }}">
-                      <Image src="~/res/trash.png" horizontalAlignment="right" width="50px" class="button" />
+                      <Image src="~/res/trash.png" horizontalAlignment="right" width="80px" class="button" />
                     </RL:Ripple>
                   </GridLayout>
                 </StackLayout>

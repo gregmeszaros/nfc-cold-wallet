@@ -32,8 +32,11 @@ export class CryptoVaultModel extends Observable {
 
         this.seedList = new ObservableArray([]);
         CryptoVaultModel.getSeedList = this.seedList;
-        // get all data if we have any from application settings
-        // this.seedList.unshift({ name: "name", encryptedSeed: "should work", decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+
+        this.getSeedListSettings().map(function (seed: Object) {
+            let data: SearchItem = seed;
+            this.seedList.unshift({ name: data.name, encryptedSeed: data.encryptedSeed, decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+        }, this);
     }
 
     public doCheckAvailable() {
@@ -102,11 +105,14 @@ export class CryptoVaultModel extends Observable {
     }
 
     public doWriteText() {
+        let data: SearchItem = {};
+        data = CryptoVaultModel.getSeedList.getItem(0) || ""; // Pass which tag to write
+
         this.nfc.writeTag({
             textRecords: [
                 {
                     id: [1],
-                    text: this.getSeedList()
+                    text: data.encryptedSeed || "not set"
                 }
             ]
         }).then(() => {
@@ -140,7 +146,7 @@ export class CryptoVaultModel extends Observable {
     }
 
     /**
-     * Capture when neew seed value is typed
+     * Capture when new seed value is typed
      */
     public onSeedChange(args: EventData) {
         const seedFromInput = args.object as TextView;
@@ -161,15 +167,23 @@ export class CryptoVaultModel extends Observable {
         }).then(r => {
             if (r.result != false) {
                 let ciphertext = CryptoES.AES.encrypt(this.seed, r.text);
-                appSettings.setString("test", ciphertext.toString());
-                this.seedList.unshift({ name: "test", encryptedSeed: ciphertext.toString(), decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+                this.seedList.unshift({ name: '#' + (CryptoVaultModel.getSeedList.length + 1), encryptedSeed: ciphertext.toString(), decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+                CryptoVaultModel.updateSeedListSettings();
             }
         });
     }
 
-    public getSeedList() {
-        const testdata: string = appSettings.getString("test");
-        return testdata;
+    public getSeedListSettings(): Array<string> {
+        return JSON.parse(appSettings.getString("seeds", "[]"));
+    }
+
+    public static updateSeedListSettings(): void {
+        let updatedItems: Array<Object> = [];
+        CryptoVaultModel.getSeedList.map(function (seed: Object) {
+            updatedItems.unshift(seed);
+        });
+        console.log(updatedItems);
+        appSettings.setString("seeds", JSON.stringify(updatedItems));
     }
 
     public decryptSeedItem(args: EventData) {
@@ -212,6 +226,7 @@ export class CryptoVaultModel extends Observable {
         console.log(removeItem.id);
         console.log(CryptoVaultModel.searchSeedKey(removeItem.id))
         CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
+        CryptoVaultModel.updateSeedListSettings();
     }
 
     public static searchSeedKey(encryptedSeed: string): number {
