@@ -6,10 +6,9 @@
       <Image src="~/res/nfc.png" class="action-image"></Image>
       <Label text="CryptoVault" class="action-label"></Label>
     </StackLayout>
-    <ActionItem tap="{{ hideKeyboard }}" icon="~/res/new.png" ios.position="right" android.position="actionBar"></ActionItem>
   </ActionBar>
 
-  <BottomNavigation selectedIndex="1">
+  <BottomNavigation selectedIndex="0">
 
     <!-- The bottom tab UI is created via TabStrip (the containier) and TabStripItem (for each tab)-->
     <TabStrip>
@@ -34,6 +33,7 @@
           <StackLayout class="nt-form">
             <StackLayout class="nt-input">
               <Label text="Your mnemonic seed" class="font-weight-bold m-b-5" />
+              <StackLayout class="hr hr-dark" />
               <TextView hint="Enter seed words..." autocapitalizationType="none" autocorrect="false" textChange="{{ onSeedChange }}"></TextView>
 
               <Button text="Encrypt seed" tap="{{ encryptSeed }}" class="button" width="80%" />
@@ -70,10 +70,6 @@
               </Repeater.itemTemplate>
             </Repeater>
           </StackLayout>
-
-          <Label text="{{ getSeedList() }}" class="message message-ndef" textWrap="true" />
-          <Label text="{{ lastNdefDiscovered }}" class="message message-ndef" textWrap="true" />
-
         </StackLayout>
       </ScrollView>
     </TabContentItem>
@@ -81,28 +77,21 @@
       <ScrollView>
         <StackLayout class="nt-input">
           <Label text="NFC" class="font-weight-bold m-b-5" />
+
+          <StackLayout class="hr hr-dark" />
+
+          <Image margin="0" src="~/res/nfc.png" width="40%" horizontalAlignment="center" />
+          <Button text="Read tag" tap="{{ doStartNdefListener }}" class="button" width="80%"/>
+          <Button text="Erase tag" tap="{{ doEraseTag }}" class="button button-c" width="80%" />
+
+          <Label text="{{ lastNdefDiscovered }}" class="message message-ndef" textWrap="true" />
+
+          <StackLayout class="hr hr-dark" />
+
           <StackLayout orientation="horizontal" width="100%">
-            <Button text="NFC available?" tap="{{ doCheckAvailable }}" class="-primary -rounded-lg" width="40%" />
+            <Button text="NFC available?" tap="{{ doCheckAvailable }}" class="button button-a" width="40%" />
             <Button text="NFC enabled?" tap="{{ doCheckEnabled }}" class="button button-a" width="40%" />
           </StackLayout>
-
-          <StackLayout orientation="horizontal" width="100%">
-            <Button text="set ndef listener" tap="{{ doStartNdefListener }}" class="button" width="40%"/>
-            <Button text="clear ndef listener" tap="{{ doStopNdefListener }}" class="button" width="40%"/>
-          </StackLayout>
-
-          <Android>
-            <StackLayout orientation="horizontal" width="100%">
-              <Button text="set tag listener" tap="{{ doStartTagListener }}" class="button" width="40%"/>
-              <Button text="clear tag listner" tap="{{ doStopTagListener }}" class="button" width="40%"/>
-            </StackLayout>
-
-            <StackLayout orientation="horizontal" width="100%">
-              <Button text="write Text" tap="{{ doWriteText }}" class="button button-d" width="40%" />
-              <Button text="write Uri" tap="{{ doWriteUri }}" class="button button-d" width="40%" />
-            </StackLayout>
-            <Button text="erase tag" tap="{{ doEraseTag }}" class="button button-c" />
-          </Android>
         </StackLayout>
       </ScrollView>>
     </TabContentItem>

@@ -167,6 +167,10 @@ export class CryptoVaultModel extends Observable {
      * Encrypt and write to the NFC chip
      */
     public encryptSeed() {
+
+        // Prevent keyboard stuck open
+        this.hideKeyboard();
+
         dialogs.prompt({
             title: encryptSeedLabel,
             message: encryptSeedLabelMessage,
