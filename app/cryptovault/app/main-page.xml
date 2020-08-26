@@ -30,7 +30,7 @@
     <!-- The number of TabContentItem components should corespond to the number of TabStripItem components -->
     <TabContentItem>
       <ScrollView>
-        <StackLayout class="bg-custom">
+        <StackLayout>
           <StackLayout class="nt-form">
             <StackLayout class="nt-input">
               <Label text="Your mnemonic seed" class="font-weight-bold m-b-5" />
@@ -58,7 +58,7 @@
                   <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
                     <Image src="~/res/download.png" width="80px" class="button" />
                   </RL:Ripple>
-                  <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $value.decrypt }}">
+                  <RL:Ripple id="{{ $value.encryptedSeed }}" tap="{{ $parents['Repeater'].doWriteText }}">
                     <Image src="~/res/write.png" width="80px" class="button" />
                   </RL:Ripple>
                   <GridLayout rows="auto" columns="*">

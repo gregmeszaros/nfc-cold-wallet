@@ -104,19 +104,29 @@ export class CryptoVaultModel extends Observable {
         });
     }
 
-    public doWriteText() {
-        let data: SearchItem = {};
-        data = CryptoVaultModel.getSeedList.getItem(0) || ""; // Pass which tag to write
+    public doWriteText(args: EventData) {
+        const decryptItem = args.object as TextView;
+        console.log(decryptItem.id);
 
-        this.nfc.writeTag({
+        // Parent object
+        let _this = (args.object as TextView).page.bindingContext;
+        console.log(_this);
+
+        console.log(CryptoVaultModel.searchSeedKey(decryptItem.id));
+        let data: SearchItem = {};
+        data = CryptoVaultModel.getSeedList.getItem(CryptoVaultModel.searchSeedKey(decryptItem.id)) || ""; // Pass which tag to write
+        console.log(JSON.stringify(data));
+
+        _this.nfc.writeTag({
             textRecords: [
                 {
                     id: [1],
-                    text: data.encryptedSeed || "not set"
+                    text: JSON.stringify(data) || "{}"
                 }
             ]
         }).then(() => {
-            this.set("lastNdefDiscovered", "NFC tag updated, wrote encrypted seed phrase!");
+            _this.set("lastNdefDiscovered", "NFC tag updated, wrote encrypted seed phrase!");
+            alert("NFC tag updated, wrote encrypted seed phrase!");
         }, (err) => {
             console.log(err);
         });
@@ -224,7 +234,7 @@ export class CryptoVaultModel extends Observable {
         console.log(args);
         const removeItem = args.object as TextView;
         console.log(removeItem.id);
-        console.log(CryptoVaultModel.searchSeedKey(removeItem.id))
+        console.log(CryptoVaultModel.searchSeedKey(removeItem.id));
         CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
         CryptoVaultModel.updateSeedListSettings();
     }
