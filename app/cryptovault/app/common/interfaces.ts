@@ -1,4 +1,4 @@
-export interface SearchItem {
+export interface SeedItem {
     name?: string;
     encryptedSeed?: string;
 }

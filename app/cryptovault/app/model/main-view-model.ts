@@ -15,7 +15,7 @@ import * as clipboard from "nativescript-clipboard";
 import { Nfc, NfcTagData, NfcNdefData } from "nativescript-nfc";
 import CryptoES from 'crypto-es';
 
-import { SearchItem } from "~/common/interfaces";
+import { SeedItem } from "~/common/interfaces";
 import { encryptSeedLabel, encryptSeedLabelMessage } from "~/common/constants";
 
 export class CryptoVaultModel extends Observable {
@@ -34,7 +34,7 @@ export class CryptoVaultModel extends Observable {
         CryptoVaultModel.getSeedList = this.seedList;
 
         this.getSeedListSettings().map(function (seed: Object) {
-            let data: SearchItem = seed;
+            let data: SeedItem = seed;
             this.seedList.unshift({ name: data.name, encryptedSeed: data.encryptedSeed, decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
         }, this);
     }
@@ -83,10 +83,29 @@ export class CryptoVaultModel extends Observable {
                 // data.message is an array of records, so:
                 data.message.forEach(record => {
                     console.log("Read record: " + JSON.stringify(record));
-                    let data: SearchItem = JSON.parse(record.payloadAsString);
-                    this.seedList.unshift({ name: data.name, encryptedSeed: data.encryptedSeed, decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
-                    CryptoVaultModel.updateSeedListSettings();
-                    this.set("lastNdefDiscovered", "Read: " + record.payloadAsString);
+                    let data: SeedItem = JSON.parse(record.payloadAsString);
+                    if (CryptoVaultModel.searchSeedKey(data.encryptedSeed) != undefined) {
+                        // Tag already exists
+                        alert("The scanned tag matched with existing seed: " + data.name);
+                    }
+                    else {
+                        // Import new tag
+                        dialogs.confirm({
+                            title: "New seed detected",
+                            message: "New encrypted seed detected! Import now?",
+                            okButtonText: "Import",
+                            cancelButtonText: "Cancel"
+                        }).then(r => {
+                            // result argument is boolean
+                            console.log("Dialog result: " + r);
+                            if (r != false) {
+                                this.seedList.unshift({ name: data.name, encryptedSeed: data.encryptedSeed, decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+                                CryptoVaultModel.updateSeedListSettings();
+                                this.set("lastNdefDiscovered", "Read: " + record.payloadAsString);
+                                alert("New seed import successful!");
+                            }
+                        });
+                    }
                 });
             }
         }, {
@@ -107,29 +126,36 @@ export class CryptoVaultModel extends Observable {
 
     public doWriteText(args: EventData) {
         const decryptItem = args.object as TextView;
-        console.log(decryptItem.id);
 
         // Parent object
         let _this = (args.object as TextView).page.bindingContext;
-        console.log(_this);
 
-        console.log(CryptoVaultModel.searchSeedKey(decryptItem.id));
-        let data: SearchItem = {};
-        data = CryptoVaultModel.getSeedList.getItem(CryptoVaultModel.searchSeedKey(decryptItem.id)) || ""; // Pass which tag to write
-        console.log(JSON.stringify(data));
+        dialogs.confirm({
+            title: "Write seed to NFC",
+            message: "Tap and hold your NFC tag near your device, press 'Write NFC' when ready!",
+            okButtonText: "Write NFC",
+            cancelButtonText: "Cancel"
+        }).then(r => {
+            // result argument is boolean
+            console.log("Dialog result: " + r);
+            if (r != false) {
+                let data: SeedItem = {};
+                data = CryptoVaultModel.getSeedList.getItem(CryptoVaultModel.searchSeedKey(decryptItem.id)) || ""; // Pass which tag to write
 
-        _this.nfc.writeTag({
-            textRecords: [
-                {
-                    id: [1],
-                    text: JSON.stringify(data) || "{}"
-                }
-            ]
-        }).then(() => {
-            _this.set("lastNdefDiscovered", "NFC tag updated, wrote encrypted seed phrase!");
-            alert("NFC tag updated, wrote encrypted seed phrase!");
-        }, (err) => {
-            console.log(err);
+                _this.nfc.writeTag({
+                    textRecords: [
+                        {
+                            id: [1],
+                            text: JSON.stringify(data) || "{}"
+                        }
+                    ]
+                }).then(() => {
+                    _this.set("lastNdefDiscovered", "NFC tag updated, wrote encrypted seed phrase!");
+                    alert("NFC tag updated, wrote encrypted seed phrase!");
+                }, (err) => {
+                    console.log(err);
+                });
+            }
         });
     }
 
@@ -197,13 +223,11 @@ export class CryptoVaultModel extends Observable {
         CryptoVaultModel.getSeedList.map(function (seed: Object) {
             updatedItems.unshift(seed);
         });
-        console.log(updatedItems);
         appSettings.setString("seeds", JSON.stringify(updatedItems));
     }
 
     public decryptSeedItem(args: EventData) {
         const decryptItem = args.object as TextView;
-        console.log(decryptItem.id);
 
         dialogs.prompt({
             title: "Decrypt seed",
@@ -236,22 +260,20 @@ export class CryptoVaultModel extends Observable {
     }
 
     public removeSeedItem(args: EventData) {
-        console.log(args);
         const removeItem = args.object as TextView;
-        console.log(removeItem.id);
-        console.log(CryptoVaultModel.searchSeedKey(removeItem.id));
         CryptoVaultModel.getSeedList.splice(CryptoVaultModel.searchSeedKey(removeItem.id), 1);
         CryptoVaultModel.updateSeedListSettings();
     }
 
     public static searchSeedKey(encryptedSeed: string): number {
         for (let i = 0; i < CryptoVaultModel.getSeedList.length; i++) {
-            let data: SearchItem = {};
+            let data: SeedItem = {};
             data = CryptoVaultModel.getSeedList.getItem(i);
             if (data.encryptedSeed != undefined && data.encryptedSeed == encryptedSeed) {
                 return i;
             }
         }
+        return undefined;
     }
 
     public hideKeyboard() {
