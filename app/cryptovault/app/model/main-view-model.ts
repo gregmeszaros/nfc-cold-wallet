@@ -80,13 +80,14 @@ export class CryptoVaultModel extends Observable {
     public doStartNdefListener() {
         this.nfc.setOnNdefDiscoveredListener((data: NfcNdefData) => {
             if (data.message) {
-                let tagMessages = [];
                 // data.message is an array of records, so:
                 data.message.forEach(record => {
                     console.log("Read record: " + JSON.stringify(record));
-                    tagMessages.push(record.payloadAsString);
+                    let data: SearchItem = JSON.parse(record.payloadAsString);
+                    this.seedList.unshift({ name: data.name, encryptedSeed: data.encryptedSeed, decrypt: this.decryptSeedItem, remove: this.removeSeedItem });
+                    CryptoVaultModel.updateSeedListSettings();
+                    this.set("lastNdefDiscovered", "Read: " + record.payloadAsString);
                 });
-                this.set("lastNdefDiscovered", "Read: " + tagMessages.join(", "));
             }
         }, {
             stopAfterFirstRead: true,
