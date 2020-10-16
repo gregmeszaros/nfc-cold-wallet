@@ -121,7 +121,7 @@ https://drive.google.com/file/d/1mtsjBRqFCZ4SuUEdi3sSUAkiet83orZp/view?usp=shari
 
 https://drive.google.com/file/d/1nPy1ZSIXi6cAynQrMY84tv1Ml6ik3-jK/view?usp=sharing
 
-**Week 8 (Milestone 1)** - Refactored the whole app using Ionic/React framework.
+**Week 8 (Milestone 1)**
 - PWA demo
 - Write/Read modes, finishing Android builds
 
