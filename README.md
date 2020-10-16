@@ -97,18 +97,39 @@ printf "U2FsdGVkX19Z+hrYCwtcRFZYF2j4wZfYYGgk5aUwJKk=" | \
 
 ## Technology stack
 - TypeScript
-- VueJS
-- CapacitorJS
+- React
+- Ionic/Capacitor
 
 ## Supported Platforms
 - Android 
 - iOS
+- Web(PWA)
 
 ## Example prototype (work in progress)
 https://drive.google.com/file/d/1GdrwaBXNKQ5MHSyoOw8mZwTZG_or2azI/view
 
+# Demos
+
+**Week 2 (Milestone 1)** 
+- This prototype was using NativeScript and discontinued in favor of ReactJS.
+
+https://drive.google.com/file/d/1mtsjBRqFCZ4SuUEdi3sSUAkiet83orZp/view?usp=sharing
+
+**Week 7 (Milestone 1)** 
+- Refactored the whole app using Ionic/React framework.
+- Added dark mode and also PWA website
+
+https://drive.google.com/file/d/1nPy1ZSIXi6cAynQrMY84tv1Ml6ik3-jK/view?usp=sharing
+
+**Week 8 (Milestone 1)** - Refactored the whole app using Ionic/React framework.
+- PWA demo
+- Write/Read modes, finishing Android builds
+
+https://drive.google.com/file/d/18QpMEXj_wZCyzxv1zblGkbdb4GS4ITH3/view?usp=sharing
+
 ## Notes
 Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
+Code available here: https://gitlab.com/gmesza01/cryptovault/-/commits/dev/
 
 Anyone could contribute or fork the code after initial launch.
 New functionality, features and the future roadmap could be decided by a democratic governance approach.
