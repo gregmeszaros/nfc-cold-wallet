@@ -52,7 +52,8 @@ The proposed mobile app solution should be able to
 - write seed data to NFC tag (if the tag is not read-only/locked)
 - make the NFC tag read-only (the seed data can't be removed/updated after this operation)
 - select passphrase to use to encrypt the seed data for the write operation
-- download wallet mnemonic seed 
+- download wallet mnemonic seed
+- ability to generate new wallet seed in the app
 - *hot copy of the seed data on the mobile device (when the nfc tag is scanned hot and cold backup copy can be compared) - sync status
 
 Payout: **1000 KSM**
@@ -60,11 +61,12 @@ Payout: **1000 KSM**
 Duration: **6-8 weeks** (after that should ready to submit to App Store and Google play store)
 
 ## Extra functionality (Milestone 2)
-- ability to generate new wallet in the app (with only the core functionality the seed needs to be typed manually)
+- use custom derivation paths - derive multiple accounts from single master seed (partially covered in milestone 1)
+- export accounts as JSON - ability to import to different wallets - Restore account from JSON (https://polkadot.js.org/apps/#/accounts)
 - more options to import already existing wallet mnemonic seed (QR code reader)
 - ability to have partial seed backed up on NFC tags (use 2 or more NFC tags to recover the full seed) --> **Shamir's Secret Sharing**, example: https://iancoleman.io/shamir39/
 
-Payout: **1000 KSM**
+Payout: **433 KSM**
 
 Duration: **4-6 weeks**
 
