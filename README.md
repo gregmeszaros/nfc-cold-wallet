@@ -127,6 +127,13 @@ https://drive.google.com/file/d/1nPy1ZSIXi6cAynQrMY84tv1Ml6ik3-jK/view?usp=shari
 
 https://drive.google.com/file/d/18QpMEXj_wZCyzxv1zblGkbdb4GS4ITH3/view?usp=sharing
 
+**Week 8 - final (Milestone 1)**
+- IOS build demo
+- Create, delete BIP-39 seed
+- Read and write NFC tags
+
+https://drive.google.com/file/d/1eWOejNzwBfii4o-fftQRv4Y6bYEbKtE4/view?usp=sharing
+
 ## Notes
 Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
 
