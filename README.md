@@ -129,7 +129,8 @@ https://drive.google.com/file/d/18QpMEXj_wZCyzxv1zblGkbdb4GS4ITH3/view?usp=shari
 
 ## Notes
 Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
-Code available here: https://gitlab.com/gmesza01/cryptovault/-/commits/dev/
+
+Code available here: https://gitlab.com/gmesza01/cryptovault/-/tree/dev
 
 Anyone could contribute or fork the code after initial launch.
 New functionality, features and the future roadmap could be decided by a democratic governance approach.
