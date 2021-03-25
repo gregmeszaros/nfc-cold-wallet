@@ -136,6 +136,12 @@ https://drive.google.com/file/d/18QpMEXj_wZCyzxv1zblGkbdb4GS4ITH3/view?usp=shari
 
 https://drive.google.com/file/d/1eWOejNzwBfii4o-fftQRv4Y6bYEbKtE4/view?usp=sharing
 
+**Week 2 - (Milestone 2)**
+- Show seed phrase as QR code
+- Recover already existing wallet mnemonic seed (QR code reader)
+
+https://drive.google.com/file/d/1Z8PebJoBjDbjU4Pi5Qg8FVsNG-ZaMCCy/view?usp=sharing
+
 ## Notes
 Goal is to opensource the whole mobile app so it can be potentially maintained by the community.
 
